@@ -1,0 +1,35 @@
+*{
+    font-family: 'Circular Std', sans-serif;
+}
+
+nav{
+    height: 80px;
+    background: #0083da;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0rem calc((100vw - 1600px) / 2);
+}
+
+
+/* Items/tabs*/
+nav a{
+    text-decoration: none;
+    color: #fff;
+    padding: 0 1.4rem;
+}
+
+nav a:hover{
+    color: #02385c;
+}
+
+.nav-items{
+    font-size: 1.3rem;
+}
+
+.logo{
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 0 2rem;
+    color: #fff
+}

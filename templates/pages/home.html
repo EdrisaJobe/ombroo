@@ -1,0 +1,20 @@
+{% extends 'pages/base.html' %}
+{% load static %}
+{% block title %}Ombroo | Home{% endblock title %}
+{% block css %}<link rel="stylesheet" href="{% static 'css/home.css' %}">{% endblock css %}
+
+
+{% block content %}
+<section class="hero">
+    <div class="hero-container">
+        <div class="column-left">
+            <h1>Ombroo, the <em style="color:gold">#1</em> workflow!</h1>
+            <p>Make life easier, plan ahead with our simple task planner for all types of workflows, whether in a team or just alone.</p>
+            <button>Start Now</button>
+        </div>
+        <div class="column-right">
+            <img src="{% static 'images/workflow.png' %}" class='hero-image' alt="workflow image">
+        </div>
+    </div>
+</section>
+{% endblock content %}
