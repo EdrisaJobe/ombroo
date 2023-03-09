@@ -9,8 +9,6 @@
   background: #0083da;
 }
 
-
-
 .hero-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -60,12 +58,12 @@ button:hover {
   padding: 0 2rem;
 }
 
+/* Mobile devices */
 @media screen and (max-width: 768px) {
-    .hero-image{
-        margin-top: 4rem;
-    }
-    .hero-container{
-        grid-template-columns: 1fr;
-    }
-    
+  .hero-image {
+    margin-top: 4rem;
+  }
+  .hero-container {
+    grid-template-columns: 1fr;
+  }
 }
