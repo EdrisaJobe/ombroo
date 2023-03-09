@@ -9,6 +9,10 @@
   user-select: none; /* Standard syntax */
 }
 
+body{
+  background: #0083da;
+}
+
 .logo {
   font-size: 2rem;
   font-weight: bold;
