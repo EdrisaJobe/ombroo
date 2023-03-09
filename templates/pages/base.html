@@ -14,18 +14,25 @@
 
     <!-- Links -->
     <link href="https://fonts.cdnfonts.com/css/circular-std" rel="stylesheet" />
+    <link rel="icon" href="{% static 'images/fav.png' %}">
     <link rel="stylesheet" href="{% static 'css/base.css' %}" />
     {% block css %} {% endblock css %}
     <!-- End of Links -->
   </head>
   <body>
+
     <!-- Navbar -->
     <nav>
       <div class="logo"><a href="{% url 'home' %}">Ombroo</a></div>
       <div class="nav-items">
-        <a href="{% url 'home' %}">Home</a>
-        <a href="{% url 'home' %}">Workspace</a>
-        <a href="{% url 'home' %}">About</a>
+        <a class="nav-link" href="{% url 'home' %}">Home</a>
+        <a class="nav-link" href="{% url 'workspace' %}">Workspace</a>
+        <a class="nav-link" href="{% url 'home' %}">About</a>
+      </div>
+      <div class="menu">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
       </div>
     </nav>
     <!-- End of Navbar -->
@@ -33,5 +40,9 @@
     <!-- Content -->
     {% block content %} {% endblock content %}
     <!-- End of Content -->
+
+    <!-- Menu script -->
+    <script src="{% static 'js/menu.js' %}"></script>
+    <!-- End of Menu script -->
   </body>
 </html>
