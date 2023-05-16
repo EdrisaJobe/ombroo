@@ -9,6 +9,12 @@
   user-select: none; /* Standard syntax */
 }
 
+.alignment{
+  margin-left: 3.7em;
+  padding: 3rem calc((100vw - 1600px) / 2);
+  color: #fff;
+}
+
 body{
   background: #0083da;
 }
