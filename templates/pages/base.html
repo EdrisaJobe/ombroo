@@ -18,6 +18,7 @@
     <link rel="icon" href="{% static 'images/fav.png' %}">
     <link rel="stylesheet" href="{% static 'css/base.css' %}" />
     {% block css %} {% endblock css %}
+
     <!-- End of Links -->
   </head>
   <body>
@@ -29,7 +30,7 @@
         <a class="nav-link" href="{% url 'home' %}">Home</a>
         <a class="nav-link" href="{% url 'workspace' %}">Workspace</a>
         <a class="nav-link" href="{% url 'home' %}">About</a>
-        <a class="nav-link" href="{% url 'home' %}">Sign In</a>
+        <a class="nav-link" href="{% url 'register' %}">Sign In</a>
       </div>
       <div class="menu">
         <div class="bar"></div>

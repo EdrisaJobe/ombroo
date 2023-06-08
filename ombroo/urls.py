@@ -19,8 +19,9 @@ from app import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    
+    path('register/', views.register, name ='register'),
+
     ### PAGES ###
     path('', views.home, name='home'),
-    path('workspace', views.workspace, name='workspace')
+    path('workspace/', views.workspace, name='workspace')
 ]
