@@ -1,8 +1,42 @@
 {% extends 'pages/base.html' %}
-{% load static %}
-{% block title %}Ombroo | Workspace{% endblock title %}
-{% block css %}<link rel="stylesheet" href="{% static 'css/workspace.css' %}">{% endblock css %}
+{% load static %} 
+{% block title %}Ombroo | Workspace{% endblock title %} 
+{% block css %}<link rel="stylesheet" href="{% static 'css/workspace.css' %}"/>{% endblock css %}
 
 {% block content %}
-Test
+<div class="main-container">
+
+  <!-- Container 1 -->
+  <div class="horizontal-container">
+      <p>To Do</p>
+  </div>
+
+  <span class="arrow-container">
+    <i class="fas fa-arrow-right"></i>
+  </span>
+
+  <!-- Container 2 -->
+  <div class="horizontal-container">
+      <p>In Progress</p>
+  </div>
+
+  <span class="arrow-container">
+    <i class="fas fa-arrow-right"></i>
+  </span>
+
+  <!-- Container 3 -->
+  <div class="horizontal-container">
+      <p>Testing</p>
+  </div>
+
+  <span class="arrow-container">
+    <i class="fas fa-arrow-right"></i>
+  </span>
+
+  <!-- Container 4 -->
+  <div class="horizontal-container">
+      <p>Done</p>
+  </div>
+
+</div>
 {% endblock content %}
