@@ -37,23 +37,28 @@
     margin-top: 1.3em;
     margin-right: 0.5em;
 }
+.arrow-container2{
+  display: none
+}
 .empty-container {
   margin-right: 1.4em;
 }
 
 /* Media query for screen width 770px or less */
 @media (max-width: 800px) {
-  .arrow-container {
-    rotate: 90deg;
+  .arrow-container2 {
+    display: flex;
     margin-top: 1em;
     margin-bottom: 0.5em;
+    justify-content: center;
   }
-  .main-container,
+  .empty-container,
+  .arrow-container,
+  .main-container{
+    display: none;
+  }
   .input-container {
     flex-direction: column;
     width: 95%;
-  }
-  .empty-container{
-    display: none;
   }
 }
