@@ -15,7 +15,7 @@ def workspace(request):
 def register(request):
     if request.method == "POST":
         form = RegisterForm(request.POST)
-        
+
         if form.is_valid():
             form.save()
 
@@ -23,4 +23,4 @@ def register(request):
     else:
         form = RegisterForm()
         
-    return render(request, 'register/register.html', {"form": form})
+    return render(request, 'registration/register.html', {"register_form": form})
