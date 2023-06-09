@@ -9,5 +9,6 @@
     {% csrf_token %}
     {{ register_form|crispy }}
     <button type="submit">Register</button>
+    <p>Already have an account? Sign in <a href="{% url 'login' %}">here</a>.</p>
 </form>
 {% endblock content %}
