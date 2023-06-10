@@ -57,10 +57,10 @@
 }
 
 /*Input*/
-button:nth-child(3){
+button:nth-child(2){
   padding-bottom: 0.5em;
 }
-input:nth-child(2){
+input:nth-child(1){
   width: 274px;
 }
 input {
@@ -108,11 +108,11 @@ button:hover {
 /* Media query for screen width 770px or less */
 @media (max-width: 1597px) {
 
-  input:nth-child(2){
+  input:nth-child(1){
     margin-top: 1em;
   }
-  input:nth-child(2),
-  button:nth-child(3){
+  input:nth-child(1),
+  button:nth-child(2){
     width: 100%;
   }
 }

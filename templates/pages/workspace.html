@@ -46,13 +46,13 @@
   <div class="vertical-container">
     <form method="POST" action="{% url 'workspace' %}">
       {% csrf_token %}
+      <p>Basic Information</p>
       <div class="vertical-container2">
 
-        <p>Card 1</p>
-        <input type="text" name="task" value="{{ task }}" maxlength="10">
+        <input type="text" name="task" value="{{ task }}" Placeholder="card information">
         <button>✔</button>
         <p class="vertical-container3">
-          Test
+          Placeholder
         </p>
 
       </div>
@@ -66,7 +66,10 @@
 
   <!-- Input Container 2 -->
   <div class="vertical-container">
-    <p>To Do</p>
+      <p>Implementation</p>
+      <div class="vertical-container2">
+        
+      </div>
   </div>
 
   <span class="empty-container"></span>
@@ -76,7 +79,10 @@
 
   <!-- Input Container 3 -->
   <div class="vertical-container">
-    <p>To Do</p>
+    <p>Testing Stage</p>
+    <div class="vertical-container2">
+      
+    </div>
   </div>
 
   <span class="empty-container"></span>
@@ -86,8 +92,12 @@
 
   <!-- Input Container 4 -->
   <div class="vertical-container">
-    <p>To Do</p>
+    <p>Completed Task(s)</p>
+      <div class="vertical-container2">
+      
+    </div>
   </div>
 
 </div>
+
 {% endblock content %}
