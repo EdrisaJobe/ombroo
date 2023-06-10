@@ -21,10 +21,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     ### REGISTRATION ###
-    path('register', views.register, name ='register'),
+    path('register/', views.register, name ='register'),
     path('', include('django.contrib.auth.urls')),
 
     ### PAGES ###
     path('', views.home, name='home'),
-    path('workspace', views.workspace, name='workspace')
+    path('workspace/', views.workspace, name='workspace')
 ]
