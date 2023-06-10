@@ -5,20 +5,32 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 def home(request):
 
-    task = "Test task"
+    return render(request, 'pages/home.html')
 
-    if request.method == 'POST':
-
-        task = request.POST.get('task', task)
-
-    return render(request, 'pages/home.html', {'task':task})
-
-# Workspace
+# Workspace - create task
 @login_required
 def workspace(request):
+    tasks = request.session.get('tasks', [])
 
-    return render(request, 'pages/workspace.html')
+    if request.method == 'POST':
+        task = request.POST.get('task')
 
+        if task:
+            tasks.append(task)
+            request.session['tasks'] = tasks
+            return redirect('workspace')
+
+    return render(request, 'pages/workspace.html', {'tasks': tasks})
+
+#Workspace - delete task
+def delete_task(request, task_index):
+    tasks = request.session.get('tasks', [])
+
+    if task_index >= 0 and task_index < len(tasks):
+        tasks.pop(task_index)
+        request.session['tasks'] = tasks
+
+    return redirect('workspace')
 
 # Registration
 def register(request):

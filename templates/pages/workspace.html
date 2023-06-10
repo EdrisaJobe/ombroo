@@ -44,19 +44,30 @@
 
   <!-- Input Container 1 -->
   <div class="vertical-container">
-    <form method="POST" action="{% url 'workspace' %}">
-      {% csrf_token %}
+
       <p>Basic Information</p>
       <div class="vertical-container2">
-
-        <input type="text" name="task" value="{{ task }}" Placeholder="card information">
-        <button>✔</button>
-        <p class="vertical-container3">
-          Placeholder
-        </p>
-
+        <form method="POST" action="{% url 'workspace' %}">
+        {% csrf_token %}
+          <input type="text" name="task" Placeholder="card information">
+          <button type="submit" class="btn-save">✔</button>
+        </form>
+        
+        {% for task in tasks %}
+        <form method="POST" action="{% url 'delete_task' forloop.counter0 %}">
+          <p class="vertical-container3">
+            {% csrf_token %}
+            {{ task }} 
+            <br>
+            <button type="submit" class="btn-del">✘</button>
+          </p>
+        </form>
+        {% empty %}
+          <br>
+          <p>No tasks added yet.</p>
+        {% endfor %}
       </div>
-    </form>
+
   </div>
 
   <span class="empty-container"></span>

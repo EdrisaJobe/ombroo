@@ -57,10 +57,14 @@
 }
 
 /*Input*/
-button:nth-child(2){
+.btn-del{
+  width: 100%;
+  background-color: rgb(255, 61, 61);
+}
+.btn-save{
   padding-bottom: 0.5em;
 }
-input:nth-child(1){
+input:nth-child(2){
   width: 274px;
 }
 input {
@@ -99,20 +103,24 @@ button {
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
     border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
-button:hover {
+.btn-save:hover {
   color: #fff;
   background-color: #00e426b7;
   border-color: rgb(0, 180, 96);
 }
+.btn-del:hover {
+  color: #fff;
+  background-color: #ff3f3fc5;
+  border-color: #ff2a2ac5;
+}
 
 /* Media query for screen width 770px or less */
 @media (max-width: 1597px) {
-
   input:nth-child(1){
     margin-top: 1em;
   }
-  input:nth-child(1),
-  button:nth-child(2){
+  input:nth-child(2),
+  .btn-save{
     width: 100%;
   }
 }
