@@ -22,11 +22,11 @@ def workspace(request):
 
     return render(request, 'pages/workspace.html', {'tasks': tasks})
 
-#Workspace - delete task
+# Workspace - delete task
 def delete_task(request, task_index):
-    tasks = request.session.get('tasks', [])
+    tasks = request.session.get('tasks', []) # receive tasks from session
 
-    if task_index >= 0 and task_index < len(tasks):
+    if task_index >= 0 and task_index < len(tasks): # check range (items in list) and remove using pop
         tasks.pop(task_index)
         request.session['tasks'] = tasks
 
