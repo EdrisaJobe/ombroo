@@ -44,11 +44,19 @@
 
   <!-- Input Container 1 -->
   <div class="vertical-container">
-      <p>To Do</p>
+    <form method="POST" action="{% url 'workspace' %}">
+      {% csrf_token %}
       <div class="vertical-container2">
-        <div class="vertical-container3">das</div>
-        <button>+ Add</button>
+
+        <p>Card 1</p>
+        <input type="text" name="task" value="{{ task }}" maxlength="10">
+        <button>✔</button>
+        <p class="vertical-container3">
+          Test
+        </p>
+
       </div>
+    </form>
   </div>
 
   <span class="empty-container"></span>
