@@ -46,7 +46,7 @@
   <div class="vertical-container">
 
       <p>Basic Information</p>
-      <div class="vertical-container2">
+      <div class="inside-container">
         <form method="POST" action="{% url 'workspace' %}">
         {% csrf_token %}
           <input type="text" name="task" Placeholder="card information">
@@ -55,7 +55,7 @@
         
         {% for task in tasks %}
         <form method="POST" action="{% url 'delete_task' forloop.counter0 %}">
-          <p class="vertical-container3">
+          <p class="basic-container" draggable="true" ondragstart="dragStart(event)">
             {% csrf_token %}
             {{ task }} 
             <br>
@@ -78,8 +78,13 @@
   <!-- Input Container 2 -->
   <div class="vertical-container">
       <p>Implementation</p>
-      <div class="vertical-container2">
-        
+      <div class="inside-container" ondragover="allowDrop(event)" ondrop="drop(event)">
+        <button class="btn-add">+ Add Grouping</button>
+        <p class="implement-container" draggable="true" ondragstart="dragStart(event)">
+          Drag and drop items.
+        </p>
+        <!-- Add a button to clear local storage -->
+        <button class="btn-reset" onclick="clearLocalStorage()">Reset</button>
       </div>
   </div>
 
@@ -91,8 +96,8 @@
   <!-- Input Container 3 -->
   <div class="vertical-container">
     <p>Testing Stage</p>
-    <div class="vertical-container2">
-      
+    <div class="inside-container" ondragover="allowDrop(event)" ondrop="drop(event)">
+      <p class="testing-container" draggable="true" ondragstart="dragStart(event)"></p>
     </div>
   </div>
 
@@ -104,11 +109,35 @@
   <!-- Input Container 4 -->
   <div class="vertical-container">
     <p>Completed Task(s)</p>
-      <div class="vertical-container2">
-      
-    </div>
+      <div class="inside-container" ondragover="allowDrop(event)" ondrop="drop(event)">
+        <p class="completed-container" draggable="true" ondragstart="dragStart(event)"></p>
+      </div>
   </div>
 
 </div>
 
+<script>
+  var draggedElement = null;
+
+  function allowDrop(event) {
+    event.preventDefault();
+  }
+
+  function dragStart(event) {
+    draggedElement = event.target;
+    event.dataTransfer.setData("text/html", draggedElement.outerHTML);
+  }
+
+  function drop(event) {
+    event.preventDefault();
+    var data = event.dataTransfer.getData("text/html");
+    var implementContainer = document.querySelector(".implement-container");
+    implementContainer.insertAdjacentHTML("beforeend", data);
+    
+    if (draggedElement && draggedElement.parentNode) {
+      draggedElement.parentNode.removeChild(draggedElement);
+      draggedElement = null;
+    }
+  }
+</script>
 {% endblock content %}

@@ -31,12 +31,8 @@
   background-color: rgb(121, 185, 246);
 }
 
-.vertical-container2 {
-  flex: 1;
-  border-radius: 5px;
-}
-
-.vertical-container3 {
+/** INPUT CONTAINER */
+.basic-container,.implement-container,.testing-container,.completed-container{
   flex: 1;
   margin-top: 1em;
   padding: 20px;
@@ -44,6 +40,7 @@
   font-size: 14px;
   background-color: rgba(0, 68, 131, 0.479);
 }
+/** ENDOF INPUT CONTAINER */
 
 .arrow-container {
   margin-top: 1.3em;
@@ -57,12 +54,15 @@
 }
 
 /*Input*/
-.btn-del{
+.btn-del,.btn-reset{
   width: 100%;
   background-color: rgb(255, 61, 61);
 }
 .btn-save{
   padding-bottom: 0.5em;
+}
+.btn-add{
+  width: 100%;
 }
 input:nth-child(2){
   width: 274px;
