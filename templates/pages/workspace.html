@@ -133,7 +133,12 @@
   function drop(event) {
     event.preventDefault();
     var data = event.dataTransfer.getData("text/html");
+
     var implementContainer = document.querySelector(".implement-container");
+    if (implementContainer.contains(draggedElement)) {
+        return; // Exit the function to prevent duplication
+    }
+  
     implementContainer.insertAdjacentHTML("beforeend", data);
     
     if (draggedElement && draggedElement.parentNode) {
@@ -155,6 +160,7 @@
     localStorage.setItem("implementPositions", JSON.stringify(positions));
   }
 
+  // load new position of items
   function loadPositions() {
     var implementContainer = document.querySelector(".implement-container");
     var basicItems = document.querySelectorAll(".basic-container");
@@ -162,6 +168,7 @@
     // Remove existing items from the "implement-container"
     implementContainer.innerHTML = "";
 
+    // save position of items
     var savedPositions = localStorage.getItem("implementPositions");
     if (savedPositions) {
       var positions = JSON.parse(savedPositions);
