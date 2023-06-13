@@ -40,6 +40,14 @@
   font-size: 14px;
   background-color: rgba(0, 68, 131, 0.479);
 }
+.implement-container{
+  background-color: #00e426d3;
+  border-color: rgb(0, 180, 96);
+}
+.testing-container{
+  background-color: orange;
+  border-color: rgb(255, 165, 20);
+}
 /** ENDOF INPUT CONTAINER */
 
 .arrow-container {
@@ -54,16 +62,23 @@
 }
 
 /*Input*/
-.btn-del,.btn-reset{
+.btn-undo{
+  float: left;
+}
+.btn-del{
   width: 100%;
   background-color: rgb(255, 61, 61);
 }
 .btn-save{
-  padding-bottom: 0.5em;
+  padding-bottom: 0.6em;
 }
-.btn-add{
+.btn-add,.btn-test{
   width: 100%;
 }
+.btn-test{
+  background-color: orange;
+}
+
 input:nth-child(2){
   width: 274px;
 }

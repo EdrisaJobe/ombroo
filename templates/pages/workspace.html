@@ -84,7 +84,7 @@
           Drag and drop items.
         </p>
         <!-- Add a button to clear local storage -->
-        <button class="btn-reset" onclick="clearLocalStorage()">Reset</button>
+        <button class="btn-undo" onclick="resetPositions()">↩</button>
       </div>
   </div>
 
@@ -97,6 +97,7 @@
   <div class="vertical-container">
     <p>Testing Stage</p>
     <div class="inside-container" ondragover="allowDrop(event)" ondrop="drop(event)">
+      <button class="btn-test">+ Add Grouping</button>
       <p class="testing-container" draggable="true" ondragstart="dragStart(event)"></p>
     </div>
   </div>
@@ -116,8 +117,10 @@
 
 </div>
 
+<!-- DRAG AND DROP SCRIPT -->
 <script>
   var draggedElement = null;
+  var initialPositions = null;
 
   function allowDrop(event) {
     event.preventDefault();
@@ -135,9 +138,67 @@
     implementContainer.insertAdjacentHTML("beforeend", data);
     
     if (draggedElement && draggedElement.parentNode) {
-      draggedElement.parentNode.removeChild(draggedElement);
+      draggedElement.style.display = "none";
       draggedElement = null;
     }
+
+    // Save the new positions to localStorage
+    savePositions();
   }
+
+  function savePositions() {
+    var implementContainer = document.querySelector(".implement-container");
+    var tasks = implementContainer.querySelectorAll(".implement-container > p");
+    var positions = [];
+    tasks.forEach(function(task) {
+      positions.push(task.outerHTML);
+    });
+    localStorage.setItem("implementPositions", JSON.stringify(positions));
+  }
+
+  function loadPositions() {
+    var implementContainer = document.querySelector(".implement-container");
+    var basicItems = document.querySelectorAll(".basic-container");
+    
+    // Remove existing items from the "implement-container"
+    implementContainer.innerHTML = "";
+
+    var savedPositions = localStorage.getItem("implementPositions");
+    if (savedPositions) {
+      var positions = JSON.parse(savedPositions);
+      implementContainer.innerHTML = positions.join("");
+
+      // Hide corresponding items in the "basic-container"
+      positions.forEach(function(position) {
+        var itemContent = document.createElement("div");
+        itemContent.innerHTML = position;
+
+        basicItems.forEach(function(basicItem) {
+          if (basicItem.textContent.trim() === itemContent.textContent.trim()) {
+            basicItem.style.display = "none";
+          }
+        });
+      });
+    }
+  }
+
+  // Reset positions
+  function resetPositions() {
+    localStorage.removeItem("implementPositions");
+    var implementContainer = document.querySelector(".implement-container");
+    implementContainer.innerHTML = "";
+
+    var basicItems = document.querySelectorAll(".basic-container");
+    basicItems.forEach(function(basicItem) {
+      basicItem.style.display = "block";
+    });
+    
+    initialPositions = null;
+  }
+
+  // Load positions when the page loads
+  window.addEventListener("DOMContentLoaded", function() {
+    loadPositions();
+  });
 </script>
 {% endblock content %}
