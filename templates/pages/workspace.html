@@ -49,7 +49,7 @@
       <div class="inside-container">
         <form method="POST" action="{% url 'workspace' %}">
         {% csrf_token %}
-          <input type="text" name="task" Placeholder="card information">
+          <input type="text" name="task" Placeholder="item description">
           <button type="submit" class="btn-save">✔</button>
         </form>
         
@@ -59,7 +59,7 @@
             {% csrf_token %}
             {{ task }} 
             <br>
-            <button type="submit" class="btn-del">✘</button>
+            <button type="submit" class="btn-del"><i class="far fa-trash-alt"></i></button>
           </p>
         </form>
         {% empty %}
@@ -67,7 +67,6 @@
           <p>No tasks added yet.</p>
         {% endfor %}
       </div>
-
   </div>
 
   <span class="empty-container"></span>
@@ -84,7 +83,7 @@
           Drag and drop items.
         </p>
         <!-- Add a button to clear local storage -->
-        <button class="btn-undo" onclick="resetPositions()">↩</button>
+        <button class="btn-undo" onclick="resetLast()">↩</button>
       </div>
   </div>
 
@@ -181,20 +180,26 @@
       });
     }
   }
-
-  // Reset positions
-  function resetPositions() {
-    localStorage.removeItem("implementPositions");
+  
+  // reset the last position of an item
+  function resetLast() {
     var implementContainer = document.querySelector(".implement-container");
-    implementContainer.innerHTML = "";
+    var lastItem = implementContainer.lastElementChild;
+    if (lastItem) {
+      lastItem.parentNode.removeChild(lastItem);
+    }
 
     var basicItems = document.querySelectorAll(".basic-container");
     basicItems.forEach(function(basicItem) {
-      basicItem.style.display = "block";
+      if (basicItem.textContent.trim() === lastItem.textContent.trim()) {
+        basicItem.style.display = "block";
+      }
     });
-    
-    initialPositions = null;
+
+    // Save the new positions to localStorage
+    savePositions();
   }
+
 
   // Load positions when the page loads
   window.addEventListener("DOMContentLoaded", function() {
