@@ -67,7 +67,7 @@ function savePositions() {
   localStorage.setItem("implementPositions", JSON.stringify(implementPositions));
   localStorage.setItem("testingPositions", JSON.stringify(testingPositions));
 
-  // Redirect to a different URL after form submission
+  // Redirect, prevents resubmitting of "Form Submission"
   window.location.href = window.location.href;
 }
 
@@ -107,6 +107,12 @@ function loadPositions() {
         basicItem.parentNode.removeChild(basicItem);
       }
     });
+
+    // Hide the remove button from other containers
+    var deleteButton = position.querySelector(".btn-del");
+    if (deleteButton) {
+      deleteButton.style.display = "none";
+    }
   });
 }
 
