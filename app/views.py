@@ -30,7 +30,11 @@ def delete_task(request, task_index):
         tasks.pop(task_index)
         request.session['tasks'] = tasks
 
-    return redirect('workspace')
+    referring_url = request.META.get('HTTP_REFERER')
+    if referring_url:
+        return redirect(referring_url)
+    else:
+        return redirect('workspace')
 
 # Registration
 def register(request):
