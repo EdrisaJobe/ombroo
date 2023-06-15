@@ -43,7 +43,7 @@
 <div class="input-container">
 
   <!-- Input Container 1 -->
-  <div class="vertical-container">
+  <div class="vertical-container1">
 
       <p>Basic Information</p>
       <div class="inside-container">
@@ -75,7 +75,7 @@
   </span>
 
   <!-- Input Container 2 -->
-  <div class="vertical-container">
+  <div class="vertical-container2">
       <p>Implementation</p>
       <div class="inside-container" ondragover="allowDrop(event)" ondrop="drop(event)">
         <button class="btn-add">+ Add Grouping</button>
@@ -94,7 +94,7 @@
   </span>
 
   <!-- Input Container 3 -->
-  <div class="vertical-container">
+  <div class="vertical-container3">
     <p>Testing Stage</p>
     <div class="inside-container" ondragover="allowDrop(event)" ondrop="drop(event)">
       <button class="btn-test">+ Add Grouping</button>
@@ -108,7 +108,7 @@
   </span>
 
   <!-- Input Container 4 -->
-  <div class="vertical-container">
+  <div class="vertical-container4">
     <p>Completed Task(s)</p>
       <div class="inside-container" ondragover="allowDrop(event)" ondrop="drop(event)">
         <p class="completed-container" draggable="true" ondragstart="dragStart(event)"></p>
@@ -118,8 +118,8 @@
 </div>
 
 <!-- DRAG AND DROP SCRIPTS -->
+<script src="{% static 'js/draganddrop.js' %}"></script>
 <script src="{% static 'js/resetLast.js' %}"></script>
 <script src="{% static 'js/clearImplement.js' %}"></script>
-<script src="{% static 'js/draganddrop.js' %}"></script>
 {% comment %} <script src="{% static 'js/clearImplement.js' %}"></script> {% endcomment %}
 {% endblock content %}

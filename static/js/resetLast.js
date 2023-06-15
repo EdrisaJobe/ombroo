@@ -1,23 +1,26 @@
 function resetLast() {
   var implementContainer = document.querySelector(".implement-container");
-  var basicItems = document.querySelectorAll(".basic-container");
+  var verticalContainers = document.querySelectorAll(".vertical-container1");
 
-  // Check if there are items in the "implementContainer"
+  // Check if the implementContainer has any child elements
   if (implementContainer.children.length > 0) {
-    // Get the last item in the "implementContainer"
+    // Get the last item in the implementContainer
     var lastItem = implementContainer.lastElementChild;
 
-    // Show the corresponding item in the "basic-container"
-    basicItems.forEach(function (basicItem) {
-      if (basicItem.textContent.trim() === lastItem.textContent.trim()) {
-        basicItem.style.display = "";
-      }
-    });
+    // Find the last vertical container
+    var lastVerticalContainer =
+      verticalContainers[verticalContainers.length - 1];
 
-    // Remove the last item from the "implementContainer"
-    lastItem.remove();
+    // Move the last item back to the last vertical container
+    lastVerticalContainer.appendChild(lastItem);
+
+    // Show the moved item in the last vertical container
+    lastItem.style.display = "block";
 
     // Save the updated positions to localStorage
     savePositions();
+
+    // Refresh the page
+    location.reload();
   }
 }
