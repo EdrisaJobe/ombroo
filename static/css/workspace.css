@@ -62,15 +62,19 @@
 }
 
 /*Input*/
-.btn-undo{
+#btn-undo{
   float: left;
+}
+#btn-reset{
+  float: right;
+  background-color: red;
 }
 .btn-del{
   width: 100%;
   background-color: rgb(255, 61, 61);
 }
 .btn-save{
-  padding-bottom: 0.6em;
+  padding-bottom: 0.5em;
 }
 .btn-add,.btn-test{
   width: 100%;

@@ -83,7 +83,8 @@
           Drag and drop items.
         </p>
         <!-- Add a button to clear local storage -->
-        <button class="btn-undo" onclick="resetLast()">↩</button>
+        <button id="btn-undo" onclick="resetLast()">↩</button>
+        <button id="btn-reset" onclick="clearLocalStorage()"><i class="fas fa-trash"></i></button>
       </div>
   </div>
 
@@ -116,100 +117,9 @@
 
 </div>
 
-<!-- DRAG AND DROP SCRIPT -->
-<script>
-  var draggedElement = null;
-  var initialPositions = null;
-
-  function allowDrop(event) {
-    event.preventDefault();
-  }
-
-  function dragStart(event) {
-    draggedElement = event.target;
-    event.dataTransfer.setData("text/html", draggedElement.outerHTML);
-  }
-
-  function drop(event) {
-    event.preventDefault();
-    var data = event.dataTransfer.getData("text/html");
-
-    var implementContainer = document.querySelector(".implement-container");
-    if (implementContainer.contains(draggedElement)) {
-        return; // Exit the function to prevent duplication
-    }
-  
-    implementContainer.insertAdjacentHTML("beforeend", data);
-    
-    if (draggedElement && draggedElement.parentNode) {
-      draggedElement.style.display = "none";
-      draggedElement = null;
-    }
-
-    // Save the new positions to localStorage
-    savePositions();
-  }
-
-  function savePositions() {
-    var implementContainer = document.querySelector(".implement-container");
-    var tasks = implementContainer.querySelectorAll(".implement-container > p");
-    var positions = [];
-    tasks.forEach(function(task) {
-      positions.push(task.outerHTML);
-    });
-    localStorage.setItem("implementPositions", JSON.stringify(positions));
-  }
-
-  // load new position of items
-  function loadPositions() {
-    var implementContainer = document.querySelector(".implement-container");
-    var basicItems = document.querySelectorAll(".basic-container");
-    
-    // Remove existing items from the "implement-container"
-    implementContainer.innerHTML = "";
-
-    // save position of items
-    var savedPositions = localStorage.getItem("implementPositions");
-    if (savedPositions) {
-      var positions = JSON.parse(savedPositions);
-      implementContainer.innerHTML = positions.join("");
-
-      // Hide corresponding items in the "basic-container"
-      positions.forEach(function(position) {
-        var itemContent = document.createElement("div");
-        itemContent.innerHTML = position;
-
-        basicItems.forEach(function(basicItem) {
-          if (basicItem.textContent.trim() === itemContent.textContent.trim()) {
-            basicItem.style.display = "none";
-          }
-        });
-      });
-    }
-  }
-  
-  // reset the last position of an item
-  function resetLast() {
-    var implementContainer = document.querySelector(".implement-container");
-    var lastItem = implementContainer.lastElementChild;
-    if (lastItem) {
-      lastItem.parentNode.removeChild(lastItem);
-    }
-
-    var basicItems = document.querySelectorAll(".basic-container");
-    basicItems.forEach(function(basicItem) {
-      if (basicItem.textContent.trim() === lastItem.textContent.trim()) {
-        basicItem.style.display = "block";
-      }
-    });
-
-    // Save the new positions to localStorage
-    savePositions();
-  }
-
-  // Load positions when the page loads
-  window.addEventListener("DOMContentLoaded", function() {
-    loadPositions();
-  });
-</script>
+<!-- DRAG AND DROP SCRIPTS -->
+<script src="{% static 'js/resetLast.js' %}"></script>
+<script src="{% static 'js/clearImplement.js' %}"></script>
+<script src="{% static 'js/draganddrop.js' %}"></script>
+{% comment %} <script src="{% static 'js/clearImplement.js' %}"></script> {% endcomment %}
 {% endblock content %}
