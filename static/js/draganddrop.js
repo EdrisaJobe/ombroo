@@ -8,12 +8,14 @@ function allowDrop(event) {
 function dragStart(event) {
   draggedElement = event.target;
   // Check if the dragged element is any of the following and prevent it
-  if (draggedElement.classList.contains("implement-container") 
-  || (draggedElement.classList.contains("testing-container")
-  || (draggedElement.classList.contains("completed-container")))) {
+  if (
+    draggedElement.classList.contains("implement-container") ||
+    draggedElement.classList.contains("testing-container") ||
+    draggedElement.classList.contains("completed-container")
+  ) {
     event.preventDefault();
     return;
-  } 
+  }
   event.dataTransfer.setData("text/html", draggedElement.outerHTML);
 }
 
@@ -51,8 +53,17 @@ function savePositions() {
   var implementContainer = document.querySelector(".implement-container");
   var testingContainer = document.querySelector(".testing-container");
 
-  var implementItems = implementContainer.querySelectorAll(".implement-container > p");
-  var testingItems = testingContainer.querySelectorAll(".testing-container > p");
+  var implementItems = implementContainer.querySelectorAll(
+    ".implement-container > p"
+  );
+  var testingItems = testingContainer.querySelectorAll(
+    ".testing-container > p"
+  );
+
+  var completedContainer = document.querySelector(".completed-container");
+  var completedItems = completedContainer.querySelectorAll(
+    ".completed-container > p"
+  );
 
   var implementPositions = [];
   implementItems.forEach(function (item) {
@@ -64,8 +75,22 @@ function savePositions() {
     testingPositions.push(item.outerHTML);
   });
 
-  localStorage.setItem("implementPositions", JSON.stringify(implementPositions));
+  var completedPositions = [];
+  completedItems.forEach(function (item) {
+    completedPositions.push(item.outerHTML);
+  });
+
+  localStorage.setItem(
+    "implementPositions",
+    JSON.stringify(implementPositions)
+  );
+
   localStorage.setItem("testingPositions", JSON.stringify(testingPositions));
+
+  localStorage.setItem(
+    "completedPositions",
+    JSON.stringify(completedPositions)
+  );
 
   // Redirect, prevents resubmitting of "Form Submission"
   window.location.href = window.location.href;
@@ -75,9 +100,31 @@ function loadPositions() {
   var implementContainer = document.querySelector(".implement-container");
   var testingContainer = document.querySelector(".testing-container");
   var basicItems = document.querySelectorAll(".basic-container");
+  var completedContainer = document.querySelector(".completed-container");
 
   implementContainer.innerHTML = "";
   testingContainer.innerHTML = "";
+
+  var savedCompletedPositions = localStorage.getItem("completedPositions");
+  if (savedCompletedPositions) {
+    var completedPositions = JSON.parse(savedCompletedPositions);
+    completedPositions.forEach(function (position) {
+      completedContainer.insertAdjacentHTML("beforeend", position);
+    });
+    // Hide the corresponding items in the basic container
+    var basicItems = document.querySelectorAll(".basic-container");
+    completedPositions.forEach(function (position) {
+      var itemContent = document.createElement("div");
+      itemContent.innerHTML = position;
+
+      basicItems.forEach(function (basicItem) {
+        if (basicItem.textContent.trim() === itemContent.textContent.trim()) {
+          basicItem.style.display = "none";
+          basicItem.parentNode.removeChild(basicItem);
+        }
+      });
+    });
+  }
 
   var savedImplementPositions = localStorage.getItem("implementPositions");
   if (savedImplementPositions) {
@@ -95,7 +142,9 @@ function loadPositions() {
     });
   }
 
-  var allPositions = Array.from(implementContainer.querySelectorAll("p")).concat(Array.from(testingContainer.querySelectorAll("p")));
+  var allPositions = Array.from(
+    implementContainer.querySelectorAll("p")
+  ).concat(Array.from(testingContainer.querySelectorAll("p")));
 
   allPositions.forEach(function (position) {
     var itemContent = document.createElement("div");

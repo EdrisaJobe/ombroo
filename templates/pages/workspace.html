@@ -82,7 +82,7 @@
         <p class="implement-container" draggable="true" ondragstart="dragStart(event)"></p>
 
         <!-- Buttons to undo or clear storage -->
-        <button id="btn-undo" onclick="resetLast()">↩</button>
+        <button id="btn-undo" onclick="resetLast()"><i class="fas fa-undo"></i></button>
         <button id="btn-reset" onclick="clearLocalStorage()"><i class="fas fa-trash"></i></button>
       </div>
   </div>
@@ -99,7 +99,8 @@
       <button class="btn-test">+ Add Grouping</button>
       <p class="testing-container" draggable="true" ondragstart="dragStart(event)"></p>
 
-      <button id="btn-reset" onclick="clearLocalStorageTest()"><i class="fas fa-trash"></i></button>
+      <!-- Button send to completed -->
+      <button id="btn-complete" onclick="complete()"><i class="fas fa-arrow-right"></i></button>
     </div>
   </div>
 
@@ -112,7 +113,12 @@
   <div class="vertical-container4">
     <p>Completed Task(s)</p>
       <div class="inside-container" ondragover="allowDrop(event)" ondrop="drop(event)">
-        <p class="completed-container" draggable="true" ondragstart="dragStart(event)"></p>
+        <p class="completed-container" draggable="true" ondragstart="dragStart(event)">
+          Green check to remove all items.
+        </p>
+
+      <!-- Button to remove all completed -->
+      <button id="btn-done" onclick="done()"><i class="fas fa-check"></i></button>
       </div>
   </div>
 
@@ -123,4 +129,6 @@
 <script src="{% static 'js/resetLast.js' %}"></script>
 <script src="{% static 'js/clearImplement.js' %}"></script>
 <script src="{% static 'js/clearTest.js' %}"></script>
+<script src="{% static 'js/complete.js' %}"></script>
+<script src="{% static 'js/done.js' %}"></script>
 {% endblock content %}

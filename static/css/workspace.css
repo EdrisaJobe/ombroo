@@ -71,6 +71,13 @@
 #btn-undo {
   float: left;
 }
+#btn-done{
+  float: right;
+}
+#btn-complete{
+  float: right;
+  background-color: orange;
+}
 #btn-reset {
   float: right;
   background-color: red;
