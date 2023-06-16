@@ -119,7 +119,6 @@ function loadPositions() {
 
       basicItems.forEach(function (basicItem) {
         if (basicItem.textContent.trim() === itemContent.textContent.trim()) {
-          basicItem.style.display = "none";
           basicItem.parentNode.removeChild(basicItem);
         }
       });
