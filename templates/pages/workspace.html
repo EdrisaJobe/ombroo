@@ -78,7 +78,7 @@
   <div class="vertical-container2">
       <p>Implementation</p>
       <div class="inside-container" ondragover="allowDrop(event)" ondrop="drop(event)">
-        <button class="btn-add">+ Add Grouping</button>
+        <p class="implement-title">Green undo button and red reset button.</p>
         <p class="implement-container" draggable="true" ondragstart="dragStart(event)"></p>
 
         <!-- Buttons to undo or clear storage -->
@@ -96,7 +96,7 @@
   <div class="vertical-container3">
     <p>Testing Stage</p>
     <div class="inside-container" ondragover="allowDrop(event)" ondrop="drop(event)">
-      <button class="btn-test">+ Add Grouping</button>
+      <p class="testing-title">Orange arrow to send all items to complete.</p>
       <p class="testing-container" draggable="true" ondragstart="dragStart(event)"></p>
 
       <!-- Button send to completed -->
@@ -114,9 +114,7 @@
     <p>Completed Task(s)</p>
       <div class="inside-container" ondragover="allowDrop(event)" ondrop="drop(event)">
         <p class="completed-title">Green check to remove all items.</p>
-        <p class="completed-container" draggable="true" ondragstart="dragStart(event)">
-          
-        </p>
+        <p class="completed-container" draggable="true" ondragstart="dragStart(event)"></p>
 
       <!-- Button to remove all completed -->
       <button id="btn-done" onclick="done()"><i class="fas fa-check"></i></button>
@@ -127,6 +125,8 @@
 
 <!-- DRAG AND DROP SCRIPTS -->
 <script src="{% static 'js/draganddrop.js' %}"></script>
+<script src="{% static 'js/addImplementGrouping.js' %}"></script>
+<script src="{% static 'js/addTestingGrouping.js' %}"></script>
 <script src="{% static 'js/resetLast.js' %}"></script>
 <script src="{% static 'js/clearImplement.js' %}"></script>
 <script src="{% static 'js/clearTest.js' %}"></script>

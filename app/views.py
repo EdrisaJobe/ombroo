@@ -22,7 +22,7 @@ def workspace(request):
 
     return render(request, 'pages/workspace.html', {'tasks': tasks})
 
-# Workspace - delete task
+# Workspace - delete specific task
 def delete_task(request, task_index):
     tasks = request.session.get('tasks', []) # receive tasks from session
 
@@ -35,6 +35,16 @@ def delete_task(request, task_index):
         return redirect(referring_url)
     else:
         return redirect('workspace')
+    
+#Workspace - delete completed tasks
+def delete_completed_tasks(request):
+    if request.method == 'POST':
+        
+        if 'tasks' in request.session:
+            del request.session['tasks']
+
+    return redirect('workspace')
+
 
 # Registration
 def register(request):

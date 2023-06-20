@@ -34,12 +34,22 @@
   background-color: rgb(121, 185, 246);
 }
 
+.implement-title,
+.testing-title,
 .completed-title{
   flex: 1;
   margin-top: 1.5em;
   padding: 14px;
   border-radius: 5px;
   font-size: 12px;
+}
+.implement-title{
+  background-color: #00e426d3;
+}
+.testing-title{
+  background-color: orange;
+}
+.completed-title{
   background-color: rgba(0, 68, 131, 0.479);
 }
 
@@ -127,8 +137,9 @@ input:focus {
   box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
 }
 
+
 /*Button*/
-button {
+button{
   margin-top: 1em;
   cursor: pointer;
   outline: 0;

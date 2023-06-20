@@ -28,4 +28,5 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('workspace/', views.workspace, name='workspace'),
     path('workspace/delete/<int:task_index>/', views.delete_task, name='delete_task'), # delete task
+    path('delete-all-tasks/', views.delete_completed_tasks, name='delete_completed_tasks'), # delete all tasks
 ]
