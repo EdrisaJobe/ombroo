@@ -1,1 +1,1 @@
-web: gunicorn theforecastapp.wsgi --log-file -
+web: gunicorn ombroo.wsgi --log-file -
